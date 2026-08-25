@@ -180,7 +180,7 @@ We start off by creating a `Dockerfile` in the root directory of our repository.
 
 ```bash
 FROM python:3.14-slim-trixie
-RUN echo 'Hello world' > greetings.txt
+RUN echo "Hello world!" > greetings.txt
 ```
 
 And then we build and run our docker image:
@@ -199,7 +199,7 @@ Let us add a label to our `Dockerfile` to indicate who the author and maintainer
 ```bash
 FROM python:3.14-slim-trixie
 LABEL org.opencontainers.image.authors="martin.rippin@helse-bergen.no"
-RUN echo 'Hello world' > greetings.txt
+RUN echo "Hello world!" > greetings.txt
 ```
 
 And then we build and inspect our docker image:
@@ -218,7 +218,7 @@ Next, we are setting `cat greetings.txt` as a default command that is run whenev
 ```bash
 FROM python:3.14-slim-trixie
 LABEL org.opencontainers.image.authors="martin.rippin@helse-bergen.no"
-RUN echo 'Hello world' > greetings.txt
+RUN echo "Hello world!" > greetings.txt
 CMD ["cat","greetings.txt"]
 ```
 
@@ -245,6 +245,16 @@ RUN pip install .
 CMD ["greeter"]
 ```
 
+And then we build and run our docker image:
+
+```bash
+# build tagged docker image
+$ docker build . -t greeter:test
+# run tagged docker image
+$ docker run --rm greeter:test
+```
+
+
 ---
 
 A full list of `Dockerfile` instructions can be found here:
@@ -261,7 +271,7 @@ https://docs.docker.com/reference/dockerfile#overview
 
 ---
 
-#### How is it different from Docker? 🐋
+#### How is it different from Docker? 🅰️🆚🐋
 
 Apptainer | Docker
 ---|---
@@ -299,7 +309,7 @@ Bootstrap: docker
 From: python:3.14-slim-trixie
 
 %post
-    echo "Hello world" > /usr/src/greetings.txt
+    echo "Hello world!" > /usr/src/greetings.txt
 ```
 
 And then we build and run our apptainer image:
