@@ -58,7 +58,34 @@ theme: default
 
 ### Docker
 
--
+#### What is it?
+
+- containerization technology to package application and dependencies into a container
+- the container image can be shipped and run consistently across different computing environments
+
+---
+
+#### Which benefits does it provide?
+
+1. Consistency
+1. Isolated environments
+1. Portability
+1. Efficiency
+
+![bg right](img/docker01.png)
+
+---
+
+#### How is it different from virtual machines?
+
+- containers use and share host OS's kernel making them more lightweight and efficient
+- virtual machines emulate entire physical machine, including OS making it possible to run multiple OS instances on single physical machine
+
+---
+
+#### How is it different from virtual machines?
+
+![width:700px](img/docker02.png)
 
 ---
 
