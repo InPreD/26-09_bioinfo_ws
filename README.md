@@ -114,6 +114,84 @@ In the forked repository, navigate to `Code`>`Codespaces`>`Create codespace on m
 
 ---
 
+Run the following commands:
+
+```bash
+# check for running docker containers
+$ docker ps
+# check for existing images
+$ docker images
+# pull image
+$ docker pull ubuntu:26.04
+# run image
+$ docker run ubuntu:26.04
+```
+
+---
+
+Run an interactive container:
+
+```bash
+# start interactive container
+$ docker run -it ubuntu:26.04
+# print container os version
+@ cat /etc/lsb-release
+# exit container
+@ exit
+# print os version
+$ lsb_release -a
+```
+
+---
+
+Instruct docker to remove containers after use:
+
+```bash
+# check for all docker containers
+$ docker ps -a
+# remove stopped container
+$ docker rm <container hash>
+# run docker with --rm flag
+$ docker run -it --rm ubuntu:26.04
+# exit container
+@ exit
+# check for all docker containers
+$ docker ps -a
+```
+
+---
+
+Remove the docker image
+
+```bash
+# remove docker image
+$ docker rmi ubuntu:26.04
+# alternatively
+$ docker rmi <container image hash>
+```
+
+---
+
+#### Building an image
+
+We start off by creating a `Dockerfile` in the root directory of our repository. We add the following to our file:
+
+```bash
+FROM python:3.14-slim-trixie
+RUN echo 'Hello world' > greetings.txt
+```
+
+And then we build and run our docker image
+
+```bash
+# build tagged docker image
+$ docker build . -t greeter:test
+# run tagged docker images
+$ docker run --rm greeter:test cat greetings.txt
+```
+
+---
+
 ## 3. Continuous Integration (CI)
     
 ---
