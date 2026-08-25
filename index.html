@@ -206,7 +206,7 @@ $ docker rmi &lt;container image <span class="hljs-built_in">hash</span>&gt;
 <h4 id="building-an-image-%F0%9F%94%A7">Building an image <img class="emoji" draggable="false" alt="🔧" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/1f527.svg" data-marp-twemoji=""/></h4>
 <p>We start off by creating a <code>Dockerfile</code> in the root directory of our repository. We add the following to our file:</p>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-bash">FROM python:3.14-slim-trixie
-RUN <span class="hljs-built_in">echo</span> <span class="hljs-string">&#x27;Hello world&#x27;</span> &gt; greetings.txt
+RUN <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;Hello world!&quot;</span> &gt; greetings.txt
 </code></pre>
 <p>And then we build and run our docker image:</p>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-bash"><span class="hljs-comment"># build tagged docker image</span>
@@ -219,7 +219,7 @@ $ docker run --<span class="hljs-built_in">rm</span> greeter:<span class="hljs-b
 <p>Let us add a label to our <code>Dockerfile</code> to indicate who the author and maintainer is:</p>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-bash">FROM python:3.14-slim-trixie
 LABEL org.opencontainers.image.authors=<span class="hljs-string">&quot;martin.rippin@helse-bergen.no&quot;</span>
-RUN <span class="hljs-built_in">echo</span> <span class="hljs-string">&#x27;Hello world&#x27;</span> &gt; greetings.txt
+RUN <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;Hello world!&quot;</span> &gt; greetings.txt
 </code></pre>
 <p>And then we build and inspect our docker image:</p>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-bash"><span class="hljs-comment"># build tagged docker image</span>
@@ -232,7 +232,7 @@ $ docker inspect greeter:<span class="hljs-built_in">test</span>
 <p>Next, we are setting <code>cat greetings.txt</code> as a default command that is run whenever the container is started:</p>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-bash">FROM python:3.14-slim-trixie
 LABEL org.opencontainers.image.authors=<span class="hljs-string">&quot;martin.rippin@helse-bergen.no&quot;</span>
-RUN <span class="hljs-built_in">echo</span> <span class="hljs-string">&#x27;Hello world&#x27;</span> &gt; greetings.txt
+RUN <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;Hello world!&quot;</span> &gt; greetings.txt
 CMD [<span class="hljs-string">&quot;cat&quot;</span>,<span class="hljs-string">&quot;greetings.txt&quot;</span>]
 </code></pre>
 <p>And then we build and run our docker image:</p>
@@ -252,6 +252,12 @@ COPY src/ ./src/
 RUN pip install .
 CMD [<span class="hljs-string">&quot;greeter&quot;</span>]
 </code></pre>
+<p>And then we build and run our docker image:</p>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-bash"><span class="hljs-comment"># build tagged docker image</span>
+$ docker build . -t greeter:<span class="hljs-built_in">test</span>
+<span class="hljs-comment"># run tagged docker image</span>
+$ docker run --<span class="hljs-built_in">rm</span> greeter:<span class="hljs-built_in">test</span>
+</code></pre>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="23" data-theme="default" style="--theme:default;">
 <p>A full list of <code>Dockerfile</code> instructions can be found here:</p>
@@ -265,7 +271,7 @@ CMD [<span class="hljs-string">&quot;greeter&quot;</span>]
 </ul>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="25" data-theme="default" style="--theme:default;">
-<h4 id="how-is-it-different-from-docker-%F0%9F%90%8B">How is it different from Docker? <img class="emoji" draggable="false" alt="🐋" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/1f40b.svg" data-marp-twemoji=""/></h4>
+<h4 id="how-is-it-different-from-docker-%F0%9F%85%B0%EF%B8%8F%F0%9F%86%9A%F0%9F%90%8B">How is it different from Docker? <img class="emoji" draggable="false" alt="🅰️" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/1f170.svg" data-marp-twemoji=""/><img class="emoji" draggable="false" alt="🆚" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/1f19a.svg" data-marp-twemoji=""/><img class="emoji" draggable="false" alt="🐋" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/1f40b.svg" data-marp-twemoji=""/></h4>
 <table>
 <thead>
 <tr>
@@ -310,7 +316,7 @@ $ apptainer <span class="hljs-built_in">exec</span> docker://ubuntu:26.04 <span 
 From: python:3.14-slim-trixie
 
 %post
-    <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;Hello world&quot;</span> &gt; /usr/src/greetings.txt
+    <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;Hello world!&quot;</span> &gt; /usr/src/greetings.txt
 </code></pre>
 <p>And then we build and run our apptainer image:</p>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-bash"><span class="hljs-comment"># build apptainer image</span>
