@@ -309,14 +309,14 @@ $ apptainer <span class="hljs-built_in">exec</span> docker://ubuntu:26.04 <span 
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-bash">Bootstrap: docker
 From: python:3.14-slim-trixie
 
-%setup
-    <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;Hello world&quot;</span> &gt; greetings.txt
+%post
+    <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;Hello world&quot;</span> &gt; /usr/src/greetings.txt
 </code></pre>
 <p>And then we build and run our apptainer image:</p>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-bash"><span class="hljs-comment"># build apptainer image</span>
 $ apptainer build greeter.sif greeter.def
 <span class="hljs-comment"># execute apptainer image</span>
-$ apptainer <span class="hljs-built_in">exec</span> greeter.sif <span class="hljs-built_in">cat</span> greetings.txt
+$ apptainer <span class="hljs-built_in">exec</span> greeter.sif <span class="hljs-built_in">cat</span> /usr/src/greetings.txt
 </code></pre>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="28" data-theme="default" style="--theme:default;">
