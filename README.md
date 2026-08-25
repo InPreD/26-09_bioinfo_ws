@@ -17,7 +17,7 @@ theme: default
     
 ---
 
-### A brief history
+### A brief history 📓
 
 &nbsp; | &nbsp;
 ---|---
@@ -27,7 +27,7 @@ theme: default
     
 ---
 
-### A brief history
+### A brief history 📓
 
 &nbsp; | &nbsp;
 ---|---
@@ -37,7 +37,7 @@ theme: default
 
 ---
 
-### A brief history
+### A brief history 📓
 
 &nbsp; | &nbsp;
 ---|---
@@ -47,7 +47,7 @@ theme: default
 
 ---
 
-### A brief history
+### A brief history 📓
 
 &nbsp; | &nbsp;
 ---|---
@@ -58,14 +58,14 @@ theme: default
 
 ### Docker
 
-#### What is it?
+#### What is it? 🔎
 
 - containerization technology to package application and dependencies into a container
 - the container image can be shipped and run consistently across different computing environments
 
 ---
 
-#### Which benefits does it provide?
+#### Which benefits does it provide? 🎁
 
 1. Consistency
 1. Isolated environments
@@ -76,16 +76,40 @@ theme: default
 
 ---
 
-#### How is it different from virtual machines?
+#### How is it different from virtual machines? 💻
 
 - containers use and share host OS's kernel making them more lightweight and efficient
 - virtual machines emulate entire physical machine, including OS making it possible to run multiple OS instances on single physical machine
 
 ---
 
-#### How is it different from virtual machines?
+#### How is it different from virtual machines? 💻
 
-![width:900px center](img/docker02.png)
+![width:800px](img/docker02.png)
+
+---
+
+#### Key Concepts 🔑
+
+1. **Image:** standardized package that includes all files, binaries, libraries, and configurations to run container
+1. **Container:** running instance of image providing isolated runtime environment
+1. **Dockerfile:** instructions on how to build image
+1. **Docker Hub:** public registry where developers can share and access pre-built images
+
+---
+
+#### Key Components 🔑
+
+1. **Docker Engine:** core, open-source technology that builds and runs containers
+1. **Docker Client:** command-line tool that sends instructions to the Docker Daemon using REST APIs
+1. **Docker Daemon (`dockerd`):** receives and processes API requests and calls container runtime
+1. **Container Runtime (`containerd`):** turns static container image into running, isolated application on host OS; industry standard
+
+---
+
+#### Let's explore! 🗺️
+
+Start by going to https://github.com/InPreD/26-09_bioinfo_ws_docker_and_ci and create a fork
 
 ---
 
