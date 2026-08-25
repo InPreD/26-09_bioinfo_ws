@@ -98,25 +98,25 @@ theme: default
 
 #### Let's explore! 🗺️
 
-Start by going to https://github.com/InPreD/26-09_bioinfo_ws_docker_and_ci and create a fork
+Start by going to https://github.com/InPreD/26-09_bioinfo_ws_docker_and_ci and create a fork.
 
 ![width:700px](img/fork01.png)
 
 ---
 
-Create your own fork by clicking on `Create fork`
+Create your own fork by clicking on `Create fork`.
 
 ![width:700px](img/fork02.png)
 
 ---
 
-In the forked repository, navigate to `Code`>`Codespaces`>`Create codespace on main`
+In the forked repository, navigate to `Code`>`Codespaces`>`Create codespace on main`.
 
 ![width:700px](img/fork03.png)
 
 ---
 
-Run the following commands:
+Inside the terminal, run the following commands:
 
 ```bash
 # check for running docker containers
@@ -149,7 +149,7 @@ $ lsb_release -a
 Instruct docker to remove containers after use:
 
 ```bash
-# check for all docker containers
+# check for any docker container
 $ docker ps -a
 # remove stopped container
 $ docker rm <container hash>
@@ -163,7 +163,7 @@ $ docker ps -a
 
 ---
 
-Remove the docker image
+Remove the docker image:
 
 ```bash
 # remove docker image
@@ -174,7 +174,7 @@ $ docker rmi <container image hash>
 
 ---
 
-#### Building an image
+#### Building an image 🔧
 
 We start off by creating a `Dockerfile` in the root directory of our repository. We add the following to our file:
 
@@ -183,14 +183,139 @@ FROM python:3.14-slim-trixie
 RUN echo 'Hello world' > greetings.txt
 ```
 
-And then we build and run our docker image
+And then we build and run our docker image:
 
 ```bash
 # build tagged docker image
 $ docker build . -t greeter:test
-# run tagged docker images
+# run tagged docker image
 $ docker run --rm greeter:test cat greetings.txt
 ```
+
+---
+
+Let us add a label to our `Dockerfile` to indicate who the author and maintainer is:
+
+```bash
+FROM python:3.14-slim-trixie
+LABEL org.opencontainers.image.authors="martin.rippin@helse-bergen.no"
+RUN echo 'Hello world' > greetings.txt
+```
+
+And then we build and inspect our docker image:
+
+```bash
+# build tagged docker image
+$ docker build . -t greeter:test
+# run tagged docker image
+$ docker inspect greeter:test
+```
+
+---
+
+Next, we are setting `cat greetings.txt` as a default command that is run whenever the container is started:
+
+```bash
+FROM python:3.14-slim-trixie
+LABEL org.opencontainers.image.authors="martin.rippin@helse-bergen.no"
+RUN echo 'Hello world' > greetings.txt
+CMD ["cat","greetings.txt"]
+```
+
+And then we build and run our docker image:
+
+```bash
+# build tagged docker image
+$ docker build . -t greeter:test
+# run tagged docker image
+$ docker run --rm greeter:test
+```
+
+---
+
+There is a small python application in this repository that we would like to include in our docker image:
+
+```bash
+FROM python:3.14-slim-trixie
+LABEL org.opencontainers.image.authors="martin.rippin@helse-bergen.no"
+WORKDIR /usr/src/greeter
+COPY pyproject.toml ./
+COPY src/ ./src/
+RUN pip install .
+CMD ["greeter"]
+```
+
+---
+
+A full list of `Dockerfile` instructions can be found here:
+
+https://docs.docker.com/reference/dockerfile#overview
+
+---
+
+### Apptainer
+
+#### What is it? 🔎
+
+- container platform designed for ease-of-use on shared systems and in high performance computing (HPC) environments
+
+---
+
+#### How is it different from Docker? 🐋
+
+Apptainer | Docker
+---|---
+without root-privileges by default | requires root privileges for most operations
+SIF (Singularity Image Format) – immutable, portable, cryptographically signed | Docker/OCI images – layered file systems, mutable by default
+can run Docker/OCI images | cannot run SIF images
+
+---
+
+#### Let's explore! 🗺️
+
+Similar to Docker, Apptainer provides a cli:
+
+```bash
+# check for any apptainer container
+$ apptainer instance list -a
+# pull image
+$ apptainer pull docker://ubuntu:26.04
+# check identity
+$ whoami
+# check identity in container
+$ apptainer exec docker://ubuntu:26.04 whoami
+```
+
+The container image is saved as a `.sif`-file to the working directory.
+
+---
+
+#### Building an image 🔧
+
+We are creating a file called `greeter.def` in the root of our repository and add the following lines:
+
+```bash
+Bootstrap: docker
+From: python:3.14-slim-trixie
+
+%setup
+    echo "Hello world" > greetings.txt
+```
+
+And then we build and run our apptainer image:
+
+```bash
+# build apptainer image
+$ apptainer build greeter.sif greeter.def
+# execute apptainer image
+$ apptainer exec greeter.sif cat greetings.txt
+```
+
+---
+
+A full list of apptainer definition file sections can be found here:
+
+https://apptainer.org/docs/user/main/definition_files.html#sections
 
 ---
 
