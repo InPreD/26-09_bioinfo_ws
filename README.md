@@ -298,8 +298,8 @@ We are creating a file called `greeter.def` in the root of our repository and ad
 Bootstrap: docker
 From: python:3.14-slim-trixie
 
-%setup
-    echo "Hello world" > greetings.txt
+%post
+    echo "Hello world" > /usr/src/greetings.txt
 ```
 
 And then we build and run our apptainer image:
@@ -308,7 +308,7 @@ And then we build and run our apptainer image:
 # build apptainer image
 $ apptainer build greeter.sif greeter.def
 # execute apptainer image
-$ apptainer exec greeter.sif cat greetings.txt
+$ apptainer exec greeter.sif cat /usr/src/greetings.txt
 ```
 
 ---
