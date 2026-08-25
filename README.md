@@ -36,8 +36,6 @@ theme: default
 
 ---
 
-### A brief history 📓
-
 &nbsp; | &nbsp;
 ---|---
 **2011** | CloudFoundry started Warden can isolate environments on any operating system running as daemon and providing API for container management
