@@ -14,6 +14,8 @@ theme: default
 ---
 
 ## 2. Containerization
+
+![bg right](img/containerization01.png)
     
 ---
 
@@ -193,5 +195,7 @@ $ docker run --rm greeter:test cat greetings.txt
 ---
 
 ## 3. Continuous Integration (CI)
+
+![bg right](img/ci01.png)
     
 ---
