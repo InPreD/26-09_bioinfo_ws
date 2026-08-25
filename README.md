@@ -85,7 +85,7 @@ theme: default
 
 #### How is it different from virtual machines?
 
-![width:700px](img/docker02.png)
+![width:900px center](img/docker02.png)
 
 ---
 
