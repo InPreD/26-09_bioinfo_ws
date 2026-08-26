@@ -334,3 +334,30 @@ https://apptainer.org/docs/user/main/definition_files.html#sections
 ![bg right](img/ci01.png)
     
 ---
+
+### What is it?
+
+- automating integration of code changes from multiple contributors into single software project
+- developers frequently merge code changes into central repository where automated tools are used to assert new code’s correctness before integration (test, lint, build)
+
+---
+
+### Which benefits does it provide?
+
+- scale up delivery output
+- enables parallel work on features
+
+---
+
+### GitHub actions
+
+#### What is it? 🔎
+
+- GitHub's continuous integration automation platform
+- repetitive tasks are triggered based on code pushes, pull requests, or custom schedules
+
+---
+
+#### How does it work? 🤔
+
+![](img/github_actions01.png)
