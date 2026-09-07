@@ -34,13 +34,13 @@ theme: default
 **2004** | First public beta of Solaris Containers released - combines system resource controls and boundary separation provided by zones
 **2005** | Open Virtuzzo is operating system-level virtualization technology for Linux which uses patched Linux kernel for virtualization, isolation, resource management and checkpointing
 **2006** | Process Containers, launched by Google, was designed for limiting, accounting and isolating resource usage of collection of processes - renamed to *Control Groups (cgroups)* and merged into Linux kernel
-**2008** | LinuX Containers (LXC) was first, most complete implementation of Linux container manager - implemented using cgroups and Linux namespaces
+**2008** | LinuX Containers (LXC) was the first, most complete implementation of a Linux container manager - implemented using cgroups and Linux namespaces
 
 ---
 
 &nbsp; | &nbsp;
 ---|---
-**2011** | CloudFoundry started Warden can isolate environments on any operating system running as daemon and providing API for container management
+**2011** | Warden from Cloud Foundry can isolate environments on any operating system, runs as a daemon and provides API for container management
 **2013** | Let Me Contain That For You (LMCTFY) kicked off as open-source version of Google’s container stack - providing Linux application containers
 **2013** | Docker emerged
 **2016** | Singularity (later Apptainer) was released
@@ -51,7 +51,7 @@ theme: default
 
 #### What is it? 🔎
 
-- containerization technology to package application and dependencies into a container
+- a technology for packaging an application with all of its dependencies into an independent executable unit (a container)
 - the container image can be shipped and run consistently across different computing environments
 
 ---
@@ -69,8 +69,8 @@ theme: default
 
 #### How is it different from virtual machines? 💻
 
-- containers use and share host OS's kernel making them more lightweight and efficient
-- virtual machines emulate entire physical machine, including OS making it possible to run multiple OS instances on single physical machine
+- containers use and share host OS's kernel, which makes them more lightweight and efficient
+- virtual machines emulate entire physical machines, including the complete OS, making it possible to run multiple OS instances on a single physical machine
 
 ---
 
@@ -80,10 +80,10 @@ theme: default
 
 #### Key Concepts 🔑
 
-1. **Image:** standardized package that includes all files, binaries, libraries, and configurations to run container
-1. **Container:** running instance of image providing isolated runtime environment
-1. **Dockerfile:** instructions on how to build image
-1. **Docker Hub:** public registry where developers can share and access pre-built images
+1. **Image:** a standardized package that includes all files, binaries, libraries, and configurations necessary to run a given container
+1. **Container:** a running instance of an image, operating in an isolated runtime environment
+1. **Dockerfile:** instructions on how to build an image
+1. **Docker Hub:** a public registry where developers can share their pre-built images
 
 ---
 
