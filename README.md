@@ -510,13 +510,13 @@ We navigate to `Actions` on GitHub to check if hadolint runs successfully.
 
 Building our docker image, we would also like to place it into the GitHub container registry (ghcr). To give the github action runner access to our personal registry, we need to create a personal access token (pat). Click on your avatar in the right corner and select `Settings` from the dropdown.
 
-![width:800px](img/github_pat01.png)
+![width:100px](img/github_pat01.png)
 
 ---
 
 In the menu on the left select `Developer settings`.
 
-![width:800px](img/github_pat02.png)
+![width:100px](img/github_pat02.png)
 
 ---
 
@@ -528,7 +528,7 @@ Expand `Personal access tokens` and select `Tokens (classic)`>`Generate new toke
 
 Give the token a descriptive name `ghcr_push_token`, select an `Expiration` (7 days should be enough) and select the `write:packages` scope (will automatically select other necessary scopes)
 
-![width:800px](img/github_pat04.png)
+![width:600px](img/github_pat04.png)
 
 ---
 
