@@ -434,3 +434,35 @@ $ mkdir -p .github/workflows
 ```
 
 Now we add `.github/workflows/hello_world.yaml` using the example file from the previous slide.
+
+---
+
+Now we commit out workflow doing:
+
+```bash
+$ git commit -m "ci: add hello world workflow"
+```
+
+---
+
+In the repository on GitHub, we navigate to `Actions`:
+
+![width:700px](img/github_actions02.png)
+
+---
+
+We see that the workflow was triggered by our last commit. To inpect we simple click on the workflow run named by our last commit message.
+
+![width:700px](img/github_actions03.png)
+
+---
+
+Our job `say-hello` was triggered. Select the job to insprect it.
+
+![width:700px](img/github_actions04.png)
+
+---
+
+We see several steps being run which we can expand by clicking on them. But most important, our workflow was successfully run! 🎉
+
+![width:700px](img/github_actions05.png)
