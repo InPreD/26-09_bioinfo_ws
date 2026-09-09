@@ -64,6 +64,7 @@ theme: default
 1. Efficiency
 
 ![bg right](img/docker01.png)
+*https://scalablehuman.com/2023/10/24/the-fallacy-of-it-works-on-my-machine*
 
 ---
 
@@ -75,6 +76,7 @@ theme: default
 ---
 
 ![width:800px](img/docker02.png)
+*https://dev.to/swikritit/docker-for-dummies-introduction-to-docker-5h67*
 
 ---
 
@@ -149,10 +151,10 @@ $ lsb_release -a
 Instruct docker to remove containers after use:
 
 ```bash
-# check for any docker container
+# check for any docker containers
 $ docker ps -a
-# remove stopped container
-$ docker rm <container hash>
+# remove all stopped containers
+$ docker rm <CONTAINER ID>
 # run docker with --rm flag
 $ docker run -it --rm ubuntu:26.04
 # exit container
@@ -168,15 +170,17 @@ Remove the docker image:
 ```bash
 # remove docker image
 $ docker rmi ubuntu:26.04
-# alternatively
-$ docker rmi <container image hash>
+# alternatively check for container image id
+$ docker images
+# and remove the image by using the id
+$ docker rmi <ID>
 ```
 
 ---
 
 #### Building an image 🔧
 
-We start off by creating a `Dockerfile` in the root directory of our repository. We add the following to our file:
+We start off by creating a `Dockerfile` in the root directory of our repository (`/workspaces/26-09_bioinfo_ws_docker_and_ci`). We add the following to our file:
 
 ```bash
 FROM python:3.14-slim-trixie
@@ -361,3 +365,4 @@ https://apptainer.org/docs/user/main/definition_files.html#sections
 #### How does it work? 🤔
 
 ![](img/github_actions01.png)
+*https://www.geeksforgeeks.org/git/introduction-to-github-actions*
