@@ -547,6 +547,26 @@ Copy the token.
 
 ---
 
+Go to your repository and click on `Settings`.
+
+![width:800px](img/ghcr_setup01.png)
+
+---
+
+In the menu on the left, expand `Secrets and variables` and select `Actions`.
+
+![width:800px](img/ghcr_setup02.png)
+
+---
+
+Now we give our secret a descriptive name, basically the same as before `GHCR_PUSH_TOKEN`, add the secret we have copied (`ghp_*`) and confirm with `Add secret`.
+
+![width:800px](img/ghcr_setup03.png)
+
+The secret should now be in your list of secrets and we can start to use it.
+
+---
+
 Now we expand our docker workflow by adding the build job below the lint job:
 
 ```yaml
@@ -559,7 +579,7 @@ jobs:
   build:
     name: Build Image
     runs-on: ubuntu-latest
-    needs: lint
+    needs: lint # wait for lint to complete successfully
     steps:
       - name: Check out the repo
         uses: actions/checkout@v7
@@ -578,3 +598,18 @@ jobs:
           tags: |
             ghcr.io/${{ github.actor }}/greeter:latest
 ```
+
+---
+
+Again, we commit and push:
+
+```bash
+# stage the workflow yaml file
+$ git add .github/workflows/docker.yaml
+# commit with commit message using appropriate git commit tag
+$ git commit -m "ci: add build job to docker workflow"
+# push the changes to the remote
+$ git push
+```
+
+And we check `Actions` to see if the workflow completes successfully.
