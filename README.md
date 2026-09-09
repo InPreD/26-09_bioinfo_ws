@@ -102,7 +102,7 @@ theme: default
 
 Start by going to https://github.com/InPreD/26-09_bioinfo_ws_docker_and_ci and create a fork.
 
-![width:700px](img/fork01.png)
+![width:800px](img/fork01.png)
 
 ---
 
@@ -114,7 +114,7 @@ Create your own fork by clicking on `Create fork`.
 
 In the forked repository, navigate to `Code`>`Codespaces`>`Create codespace on main`.
 
-![width:700px](img/fork03.png)
+![width:800px](img/fork03.png)
 
 ---
 
@@ -245,7 +245,7 @@ LABEL org.opencontainers.image.authors="martin.rippin@helse-bergen.no"
 WORKDIR /usr/src/greeter
 COPY pyproject.toml ./
 COPY src/ ./src/
-RUN pip install .
+RUN pip install --no-cache-dir .
 CMD ["greeter"]
 ```
 
@@ -411,9 +411,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # github action definition
+      # github action definition, more information about the checkout action at https://github.com/actions/checkout
       - name: Checkout Code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       # step definition
       - name: Run a Hello World Script
@@ -440,29 +440,141 @@ Now we add `.github/workflows/hello_world.yaml` using the example file from the 
 Now we commit out workflow doing:
 
 ```bash
+# stage the workflow yaml file
+$ git add .github/workflows/hello_world.yaml
+# commit with commit message using appropriate git commit tag
 $ git commit -m "ci: add hello world workflow"
+# push the changes to the remote
+$ git push
+```
+
+In the repository on GitHub, we navigate to `Actions`.
+
+![width:800px](img/github_actions02.png)
+
+---
+
+We see that the workflow was triggered by our last commit. To inpect we simply click on the workflow run named by our last commit message.
+
+![width:800px](img/github_actions03.png)
+
+---
+
+Our job `say-hello` was triggered. Select the job to inspect it.
+
+![width:800px](img/github_actions04.png)
+
+---
+
+We see several steps being run which we can expand by clicking on them. But most importantly, our workflow was successfully run! 🎉
+
+![width:800px](img/github_actions05.png)
+
+---
+
+Let's use GitHub actions to lint our Dockerfile and build the image. We start by creating `.github/workflows/docker.yaml` and add the following:
+
+```yaml
+name: Docker Lint and Build
+on: [push]
+
+jobs:
+  lint:
+    name: Build Image
+    runs-on: ubuntu-latest
+    steps:
+        # action to checkout repository
+      - name: Check out the repo
+        uses: actions/checkout@v7
+        # action to use hadolint for linting the Dockerfile
+      - name: Lint Dockerfile
+        uses: hadolint/hadolint-action@v3.5.0
 ```
 
 ---
 
-In the repository on GitHub, we navigate to `Actions`:
+After adding the new workflow, we can commit both the `Dockerfile` and `.github/workflows/docker.yaml`:
 
-![width:700px](img/github_actions02.png)
+```bash
+# stage the Dockerfile and workflow yaml file
+$ git add Dockerfile .github/workflows/docker.yaml
+# commit with commit message using appropriate git commit tag
+$ git commit -m "ci: add Dockerfile and docker workflow"
+# push the changes to the remote
+$ git push
+```
 
----
-
-We see that the workflow was triggered by our last commit. To inpect we simple click on the workflow run named by our last commit message.
-
-![width:700px](img/github_actions03.png)
-
----
-
-Our job `say-hello` was triggered. Select the job to insprect it.
-
-![width:700px](img/github_actions04.png)
+We navigate to `Actions` on GitHub to check if hadolint runs successfully.
 
 ---
 
-We see several steps being run which we can expand by clicking on them. But most important, our workflow was successfully run! 🎉
+Building our docker image, we would also like to place it into the GitHub container registry (ghcr). To give the github action runner access to our personal registry, we need to create a personal access token (pat). Click on your avatar in the right corner and select `Settings` from the dropdown.
 
-![width:700px](img/github_actions05.png)
+![width:800px](img/github_pat01.png)
+
+---
+
+In the menu on the left select `Developer settings`.
+
+![width:800px](img/github_pat02.png)
+
+---
+
+Expand `Personal access tokens` and select `Tokens (classic)`>`Generate new token`>`Generate new token (classic)`.
+
+![width:800px](img/github_pat03.png)
+
+---
+
+Give the token a descriptive name `ghcr_push_token`, select an `Expiration` (7 days should be enough) and select the `write:packages` scope (will automatically select other necessary scopes)
+
+![width:800px](img/github_pat04.png)
+
+---
+
+Scroll to the bottom of the page and confirm with `Generate token`.
+
+![width:800px](img/github_pat05.png)
+
+---
+
+Copy the token.
+
+![width:800px](img/github_pat06.png)
+
+> [!WARNING]
+> The token will only be accessible after creation, do not leave this site until you have completed adding it to your repository.
+
+---
+
+Now we expand our docker workflow by adding the build job below the lint job:
+
+```yaml
+name: Docker Lint and Build
+on: [push]
+
+jobs:
+  lint:
+    ...
+  build:
+    name: Build Image
+    runs-on: ubuntu-latest
+    needs: lint
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v7
+      # action to login to GitHub container registry
+      - name: Login to GitHub container registry
+        uses: docker/login-action@v4
+        with:
+          registry: ghcr.io # address to GitHub container registry
+          username: ${{ github.actor }} # the user triggering the workflow
+          password: ${{ secrets.GHCR_PUSH_TOKEN }} # The personal access token we have created earlier
+      # action to build and push the image to GitHub container registry
+      - name: Build and push image to GitHub container registry
+        uses: docker/build-push-action@v5
+        with:
+          push: true
+          tags: |
+            ghcr.io/${{ github.actor }}/greeter:latest
+```
