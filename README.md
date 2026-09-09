@@ -366,3 +366,71 @@ https://apptainer.org/docs/user/main/definition_files.html#sections
 
 ![](img/github_actions01.png)
 *https://www.geeksforgeeks.org/git/introduction-to-github-actions*
+
+---
+
+##### Workflow:
+
+- [`.yaml`-file](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax) located at `.github/workflows/` containing CI instructions
+
+##### Event
+
+- defined in workflow file
+- trigger to start workflow, e.g. push, pull_request, schedule, [etc.](https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows)
+
+##### Jobs
+
+- defined in workflow file
+- contains several tasks/*steps* and is running on a specific runner (server executing the code of the workflow)
+- jobs run in parallel or can depend on each other, e.g. testing before building a container image
+
+---
+
+##### Step
+
+- single task inside a job, e.g. installing python
+
+##### GitHub Action
+
+- reusable steps written by other developers that are freely available
+- shorter workflows and avoiding unnecessary repetition
+
+---
+
+#### Example ⚙️
+
+```yaml
+name: Hello World
+# event definition
+on: [push]
+
+jobs:
+  # job definition
+  say-hello:
+    # runner definition
+    runs-on: ubuntu-latest
+
+    steps:
+      # github action definition
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      # step definition
+      - name: Run a Hello World Script
+        run: |
+          echo "Hello, world!"
+          echo "The current repository branch is ${{ github.ref }}"
+```
+
+---
+
+#### Let's explore! 🗺️
+
+We are adding a workflow file to our repository:
+
+```bash
+# create .github/workflows
+$ mkdir -p .github/workflows
+```
+
+Now we add `.github/workflows/hello_world.yaml` using the example file from the previous slide.
