@@ -516,7 +516,7 @@ Building our docker image, we would also like to place it into the GitHub contai
 
 In the menu on the left select `Developer settings`.
 
-![width:200px](img/github_pat02.png)
+![width:150px](img/github_pat02.png)
 
 ---
 
