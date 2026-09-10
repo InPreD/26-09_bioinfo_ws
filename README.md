@@ -642,7 +642,7 @@ In the menu on the right, navigate to `Package settings`.
 
 On the bottom of the page you can find `Change visibility`. Click on it.
 
-![width:600px](img/greeter05.png)
+![width:400px](img/greeter05.png)
 
 ---
 
