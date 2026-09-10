@@ -613,3 +613,58 @@ $ git push
 ```
 
 And we check `Actions` to see if the workflow completes successfully.
+
+---
+
+When the image was successfully pushed to the GitHub container registry we will have to change its visibility. Click on your avatar in the right upper corner and go to `Repositories`.
+
+![width:200px](img/greeter01.png)
+
+---
+
+Continue to `Packages`.
+
+![width:800px](img/greeter02.png)
+
+---
+
+Click on the package `greeter`.
+
+![width:800px](img/greeter03.png)
+
+---
+
+In the menu on the right, navigate to `Package settings`.
+
+![width:800px](img/greeter04.png)
+
+---
+
+On the bottom of the page you can find `Change visibility`. Click on it.
+
+![width:800px](img/greeter05.png)
+
+---
+
+Now we select `Public` and enter `greeter` in the text field. Finally, we confirm `I understand the consequences, change package visibility`.
+
+![width:800px](img/greeter06.png)
+
+---
+
+This enables us now to pull our image from the GitHub container registry. Go to the command line in your repository and start the container:
+
+```bash
+# pull and run pushed container image
+$ docker run -it --rm ghcr.io/marrip/greeter:latest
+```
+
+If you see the greeting `Hello! Hei!` on the bottom of the standard output you have successfully pulled and run your container image. 🥳
+
+---
+
+Thank you for your attention!
+
+Workshop completed ✅
+
+![bg right](img/trondheim01.png)
