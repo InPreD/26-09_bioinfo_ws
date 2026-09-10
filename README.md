@@ -648,7 +648,7 @@ On the bottom of the page you can find `Change visibility`. Click on it.
 
 Now we select `Public` and enter `greeter` in the text field. Finally, we confirm `I understand the consequences, change package visibility`.
 
-![width:700px](img/greeter06.png)
+![width:500px](img/greeter06.png)
 
 ---
 
