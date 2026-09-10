@@ -624,7 +624,7 @@ When the image was successfully pushed to the GitHub container registry we will 
 
 Continue to `Packages`.
 
-![width:800px](img/greeter02.png)
+![width:700px](img/greeter02.png)
 
 ---
 
@@ -642,13 +642,13 @@ In the menu on the right, navigate to `Package settings`.
 
 On the bottom of the page you can find `Change visibility`. Click on it.
 
-![width:800px](img/greeter05.png)
+![width:600px](img/greeter05.png)
 
 ---
 
 Now we select `Public` and enter `greeter` in the text field. Finally, we confirm `I understand the consequences, change package visibility`.
 
-![width:800px](img/greeter06.png)
+![width:700px](img/greeter06.png)
 
 ---
 
