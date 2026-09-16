@@ -663,7 +663,7 @@ If you see the greeting `Hello! Hei!` on the bottom of the standard output you h
 
 ---
 
-#### Additional task
+#### Additional task 💻
 
 1. Add a github action step to run `hadolint` (docker) when pushing to the repo. 
 1. Refactor `main()` in `src/greeter/main.py` and allow the new function to greet someone by name. The name can be supplied via a prompt.
