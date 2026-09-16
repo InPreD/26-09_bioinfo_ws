@@ -663,6 +663,16 @@ If you see the greeting `Hello! Hei!` on the bottom of the standard output you h
 
 ---
 
+#### Additional task
+
+1. Add a github action step to run `hadolint` (docker) when pushing to the repo. 
+1. Refactor `main()` in `src/greeter/main.py` and allow the new function to greet someone by name. The name can be supplied via a prompt.
+1. Add a unit test to `src/greeter/main_test.py`.
+1. Add a github action job with a step to run your unit test when pushing to the repo.
+1. Add a github action step to run `ruff` linting (python) when pushing to the repo.
+
+---
+
 Thank you for your attention!
 
 Workshop completed ✅
