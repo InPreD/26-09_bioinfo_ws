@@ -24,7 +24,7 @@ theme: default
 &nbsp; | &nbsp;
 ---|---
 **1979** | `chroot` system call (changing the root directory of a process and its children to a new location in the filesystem) in Unix V7 considered as beginning of process isolation
-**2000** | FreeBSD Jails allows administrators to partition FreeBSD computer system into several independent, smaller systems (*jails*) – with the ability to assign IP address for each system and configuration
+**2000** | FreeBSD Jails allows administrators to partition a FreeBSD computer system into several independent, smaller systems (*jails*) – with the ability to assign an IP address to each system and configuration
 **2001** | Linux VServer is a jail mechanism that can partition resources, similar to FreeBSD Jails
     
 ---
@@ -32,8 +32,8 @@ theme: default
 &nbsp; | &nbsp;
 ---|---
 **2004** | First public beta of Solaris Containers released - combines system resource controls and boundary separation provided by zones
-**2005** | Open Virtuzzo is operating system-level virtualization technology for Linux which uses a patched Linux kernel for virtualization, isolation, resource management and checkpointing
-**2006** | Process Containers, launched by Google, was designed for limiting, accounting and isolating resource usage of a collection of processes - renamed to *Control Groups (cgroups)* and merged into Linux kernel
+**2005** | Open Virtuzzo is operating system-level virtualization technology for Linux that uses a patched Linux kernel for virtualization, isolation, resource management, and checkpointing
+**2006** | Process Containers, launched by Google, was designed for limiting, accounting, and isolating resource usage of a collection of processes - renamed to *Control Groups (cgroups)* and merged into Linux kernel
 **2008** | LinuX Containers (LXC) was the first, most complete implementation of a Linux container manager - implemented using cgroups and Linux namespaces
 
 ---
@@ -279,7 +279,7 @@ https://docs.docker.com/reference/dockerfile#overview
 
 Apptainer | Docker
 ---|---
-without root-privileges by default | requires root privileges for most operations
+without root privileges by default | requires root privileges for most operations
 SIF (Singularity Image Format) | Docker/OCI images
 can run Docker/OCI images | cannot run SIF images
 
@@ -341,8 +341,8 @@ https://apptainer.org/docs/user/main/definition_files.html#sections
 
 ### What is it?
 
-- automating integration of code changes from multiple contributors into single software project
-- developers frequently merge code changes into central repository where automated tools are used to assert new code’s correctness before integration (test, lint, build)
+- automating integration of code changes from multiple contributors into a single software project
+- developers frequently merge code changes into a central repository where automated tools are used to assert the correctness of new code before integration (test, lint, build)
 
 ---
 
