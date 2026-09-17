@@ -23,17 +23,17 @@ theme: default
 
 &nbsp; | &nbsp;
 ---|---
-**1979** | `chroot` system call (changing the root directory of a process and its children to a new location in the filesystem) in Uni V7 considered as beginning of process isolation
+**1979** | `chroot` system call (changing the root directory of a process and its children to a new location in the filesystem) in Unix V7 considered as beginning of process isolation
 **2000** | FreeBSD Jails allows administrators to partition FreeBSD computer system into several independent, smaller systems (*jails*) – with the ability to assign IP address for each system and configuration
-**2001** | Linux VServer is jail mechanism that can partition resources, similar to FreeBSD Jails
+**2001** | Linux VServer is a jail mechanism that can partition resources, similar to FreeBSD Jails
     
 ---
 
 &nbsp; | &nbsp;
 ---|---
 **2004** | First public beta of Solaris Containers released - combines system resource controls and boundary separation provided by zones
-**2005** | Open Virtuzzo is operating system-level virtualization technology for Linux which uses patched Linux kernel for virtualization, isolation, resource management and checkpointing
-**2006** | Process Containers, launched by Google, was designed for limiting, accounting and isolating resource usage of collection of processes - renamed to *Control Groups (cgroups)* and merged into Linux kernel
+**2005** | Open Virtuzzo is operating system-level virtualization technology for Linux which uses a patched Linux kernel for virtualization, isolation, resource management and checkpointing
+**2006** | Process Containers, launched by Google, was designed for limiting, accounting and isolating resource usage of a collection of processes - renamed to *Control Groups (cgroups)* and merged into Linux kernel
 **2008** | LinuX Containers (LXC) was the first, most complete implementation of a Linux container manager - implemented using cgroups and Linux namespaces
 
 ---
@@ -280,7 +280,7 @@ https://docs.docker.com/reference/dockerfile#overview
 Apptainer | Docker
 ---|---
 without root-privileges by default | requires root privileges for most operations
-SIF (Singularity Image Format) – immutable, portable, cryptographically signed | Docker/OCI images – layered file systems, mutable by default
+SIF (Singularity Image Format) | Docker/OCI images
 can run Docker/OCI images | cannot run SIF images
 
 ---
@@ -508,7 +508,7 @@ We navigate to `Actions` on GitHub to check if hadolint runs successfully.
 
 ---
 
-Building our docker image, we would also like to place it into the GitHub container registry (ghcr). To give the github action runner access to our personal registry, we need to create a personal access token (pat). Click on your avatar in the right corner and select `Settings` from the dropdown.
+Building our docker image, we would also like to place it into the GitHub container registry (*ghcr*). To give the github action runner access to our personal registry, we need to create a personal access token (*pat*). Click on your avatar in the right corner and select `Settings` from the dropdown.
 
 ![width:200px](img/github_pat01.png)
 
@@ -665,7 +665,6 @@ If you see the greeting `Hello! Hei!` on the bottom of the standard output you h
 
 #### Additional task 💻
 
-1. Add a github action step to run `hadolint` (docker) when pushing to the repo. 
 1. Refactor `main()` in `src/greeter/main.py` and allow the new function to greet someone by name. The name can be supplied via a prompt.
 1. Add a unit test to `src/greeter/main_test.py`.
 1. Add a github action job with a step to run your unit test when pushing to the repo.
@@ -678,3 +677,14 @@ Thank you for your attention!
 Workshop completed ✅
 
 ![bg right](img/trondheim01.png)
+
+---
+
+## References
+
+- https://www.aquasec.com/blog/a-brief-history-of-containers-from-1970s-chroot-to-docker-2016/
+- https://ciq.com/blog/ten-years-of-apptainer-singularity-a-look-back-at-the-big-bang-of-hpc-containers
+- https://www.freecodecamp.org/news/an-introduction-to-docker-and-containers-for-beginners/
+- https://cyberpanel.net/blog/apptainer-vs-docker
+- https://www.atlassian.com/continuous-delivery/continuous-integration
+- https://www.geeksforgeeks.org/git/introduction-to-github-actions/
