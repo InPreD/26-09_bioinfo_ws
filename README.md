@@ -59,6 +59,7 @@ theme: default
 #### Which benefits does it provide? 🎁
 
 1. Consistency
+1. Reproducibility
 1. Isolated environments
 1. Portability
 1. Efficiency
@@ -125,8 +126,10 @@ Inside the terminal, run the following commands:
 $ docker ps
 # check for existing images
 $ docker images
-# pull image
+# pull image via tag (mutable)
 $ docker pull ubuntu:26.04
+# alternatively pull image via digest (immutable) 
+$ docker pull ubuntu@sha256:9559ceb7c21e528e233e8dff26a0fb2682f4094cce06176eeb075d87a22b31de
 # run image
 $ docker run ubuntu:26.04
 ```
@@ -242,10 +245,9 @@ There is a small python application in this repository that we would like to inc
 ```bash
 FROM python:3.14-slim-trixie
 LABEL org.opencontainers.image.authors="martin.rippin@helse-bergen.no"
-WORKDIR /usr/src/greeter
-COPY pyproject.toml ./
-COPY src/ ./src/
-RUN pip install --no-cache-dir .
+COPY pyproject.toml /usr/src/greeter/
+COPY src/ /usr/src/greeter/src/
+RUN cd /usr/src/greeter && pip install --no-cache-dir .
 CMD ["greeter"]
 ```
 
@@ -508,6 +510,38 @@ We navigate to `Actions` on GitHub to check if hadolint runs successfully.
 
 ---
 
+##### Did it fail? 😓😕😡😭
+
+No worries that was intended. Let us fix the thing hadolint complained about:
+
+```diff
+  FROM python:3.14-slim-trixie
+  LABEL org.opencontainers.image.authors="martin.rippin@helse-bergen.no"
+  COPY pyproject.toml /usr/src/greeter/
+  COPY src/ /usr/src/greeter/src/
+- RUN cd /usr/src/greeter && pip install --no-cache-dir .
++ WORKDIR /usr/src/greeter
++ RUN pip install --no-cache-dir .
+  CMD ["greeter"]
+```
+
+---
+
+We commit and push again:
+
+```bash
+# stage the Dockerfile
+$ git add Dockerfile
+# commit with commit message using appropriate git commit tag
+$ git commit -m "ci: use WORKDIR instead of RUN cd in Dockerfile"
+# push the changes to the remote
+$ git push
+```
+
+Better now?
+
+---
+
 Building our docker image, we would also like to place it into the GitHub container registry (*ghcr*). To give the github action runner access to our personal registry, we need to create a personal access token (*pat*). Click on your avatar in the right corner and select `Settings` from the dropdown.
 
 ![width:200px](img/github_pat01.png)
@@ -660,6 +694,9 @@ $ docker run -it --rm ghcr.io/marrip/greeter:latest
 ```
 
 If you see the greeting `Hello! Hei!` on the bottom of the standard output you have successfully pulled and run your container image. 🥳
+
+> [!CAUTION]
+> To ensure that you always refer to the same image in production, use a version tag or even better a digest (SH256 hash) as all tags are mutable!
 
 ---
 
