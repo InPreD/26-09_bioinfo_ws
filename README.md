@@ -158,6 +158,8 @@ Instruct docker to remove containers after use:
 $ docker ps -a
 # remove all stopped containers
 $ docker rm <CONTAINER ID>
+# alternatively - you have to confirm with "y"
+$ docker container prune
 # run docker with --rm flag
 $ docker run -it --rm ubuntu:26.04
 # exit container
@@ -380,7 +382,7 @@ https://apptainer.org/docs/user/main/definition_files.html#sections
 - defined in workflow file
 - trigger to start workflow, e.g. push, pull_request, schedule, [etc.](https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows)
 
-##### Jobs
+##### Job
 
 - defined in workflow file
 - contains several tasks/*steps* and is running on a specific runner (server executing the code of the workflow)
@@ -428,7 +430,7 @@ jobs:
 
 #### Let's explore! 🗺️
 
-We are adding a workflow file to our repository:
+We are adding a workflow file to our repository. We start by creating with a dedicated directory:
 
 ```bash
 # create .github/workflows
@@ -439,7 +441,7 @@ Now we add `.github/workflows/hello_world.yaml` using the example file from the 
 
 ---
 
-Now we commit out workflow doing:
+Now we commit our workflow with git:
 
 ```bash
 # stage the workflow yaml file
