@@ -220,7 +220,7 @@ $ docker inspect greeter:test
 
 ---
 
-Next, we are setting `cat greetings.txt` as a default command that is run whenever the container is started:
+Next, we are setting `cat greetings.txt` as the default command that is run whenever the container is started:
 
 ```bash
 FROM python:3.14-slim-trixie
