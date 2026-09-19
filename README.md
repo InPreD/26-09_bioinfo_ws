@@ -484,7 +484,7 @@ on: [push]
 
 jobs:
   lint:
-    name: Build Image
+    name: Lint Dockerfile
     runs-on: ubuntu-latest
     steps:
         # action to checkout repository
