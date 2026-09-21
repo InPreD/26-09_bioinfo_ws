@@ -692,7 +692,7 @@ This enables us now to pull our image from the GitHub container registry. Go to 
 
 ```bash
 # pull and run pushed container image
-$ docker run -it --rm ghcr.io/marrip/greeter:latest
+$ docker run --rm ghcr.io/marrip/greeter:latest
 ```
 
 If you see the greeting `Hello! Hei!` on the bottom of the standard output you have successfully pulled and run your container image. 🥳
