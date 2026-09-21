@@ -32,7 +32,7 @@ theme: default
 &nbsp; | &nbsp;
 ---|---
 **2004** | First public beta of Solaris Containers released - combines system resource controls and boundary separation provided by zones
-**2005** | Open Virtuzzo is operating system-level virtualization technology for Linux that uses a patched Linux kernel for virtualization, isolation, resource management, and checkpointing
+**2005** | Open Virtuozzo is operating system-level virtualization technology for Linux that uses a patched Linux kernel for virtualization, isolation, resource management, and checkpointing
 **2006** | Process Containers, launched by Google, was designed for limiting, accounting, and isolating resource usage of a collection of processes - renamed to *Control Groups (cgroups)* and merged into Linux kernel
 **2008** | LinuX Containers (LXC) was the first, most complete implementation of a Linux container manager - implemented using cgroups and Linux namespaces
 
