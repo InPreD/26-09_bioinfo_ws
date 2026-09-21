@@ -13,7 +13,7 @@ theme: default
 
 ---
 
-## 2. Containerization
+## 1. Containerization
 
 ![bg right](img/containerization01.png)
     
@@ -337,7 +337,7 @@ https://apptainer.org/docs/user/main/definition_files.html#sections
 
 ---
 
-## 3. Continuous Integration (CI)
+## 2. Continuous Integration (CI)
 
 ![bg right](img/ci01.png)
     
